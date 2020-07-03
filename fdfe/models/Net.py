@@ -6,15 +6,9 @@ class Net(nn.Module):
     
     def __init__(self):
         super(Net, self).__init__()
-        layers = [nn.Conv2d(1, 8, kernel_size=3, stride=1),
+        layers = [nn.Conv2d(1, 8, kernel_size=3, stride=1, padding=1),
                   nn.ReLU(),
-                  nn.MaxPool2d(kernel_size=2),
-                  nn.Conv2d(8, 16, kernel_size=3, stride=1),
-                  nn.ReLU(),
-                  nn.MaxPool2d(kernel_size=2),
-                  nn.Conv2d(16, 128, kernel_size=2, stride=1),
-                  nn.ReLU(),
-                  nn.Conv2d(128, 113, kernel_size=1)]
+                  nn.MaxPool2d(kernel_size=2, stride=2)]
         self.layers = nn.ModuleList(layers)
 
 
