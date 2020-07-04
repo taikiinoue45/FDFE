@@ -5,8 +5,8 @@ class UnwrapMultiMaxPool2d(nn.Module):
     def __init__(self):
         
         super(UnwrapMultiMaxPool2d, self).__init__()
-        self.H = 960
-        self.W = 1280
+        self.H = 320
+        self.W = 576
 
 
     def forward(self, x):
@@ -15,5 +15,6 @@ class UnwrapMultiMaxPool2d(nn.Module):
         x = x.transpose(0, 1).contiguous()
         x = x.view(8, self.H//2, self.W//2, 2, 2).contiguous()
         x = x.transpose(2, 3).contiguous()
-        x = x.view(8, self.H, self.W).contiguous()
+        x = x.view(1, 8, self.H, self.W).contiguous()
+
         return x
