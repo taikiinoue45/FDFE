@@ -29,17 +29,26 @@ class MultiMaxPool2d(nn.Module):
     def forward(self, 
                 x: torch.tensor) -> torch.tensor:
 
+        '''
+        x.shape -> (b, c, h, w)
+        b : batch,   c : channel
+        h : height,  w : width
+        '''
+
         out = []
-        
+
         x_ = F.pad(x, [0, 0, 0, 0], value=0)
         out.append(self.maxpool2d(x_))
 
+        # pad w dim by (-1, 1)
         x_ = F.pad(x, [-1, 1, 0, 0], value=0)
         out.append(self.maxpool2d(x_))
 
+        # pad h dim by (-1, 1)
         x_ = F.pad(x, [0, 0, -1, 1], value=0)
         out.append(self.maxpool2d(x_))
 
+        # pad w and h dim by (-1, 1)
         x_ = F.pad(x, [-1, 1, -1, 1], value=0)
         out.append(self.maxpool2d(x_))
 
