@@ -15,11 +15,9 @@ class FDFENet(nn.Module):
                 net.layers[i] = MultiMaxPool2d(layer)
                 
         self.fdfe_net = net
-        self.unwrappool = UnwrapMultiMaxPool2d()
         
         
     def forward(self, x):
         
         x = self.fdfe_net(x)
-        x = self.unwrappool(x)
         return x

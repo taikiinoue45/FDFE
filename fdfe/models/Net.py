@@ -5,7 +5,9 @@ import torch.nn as nn
 class Net(nn.Module):
     
     def __init__(self):
+
         super(Net, self).__init__()
+        
         layers = [nn.Conv2d(3, 8, kernel_size=3, stride=1),
                   nn.ReLU(),
                   nn.MaxPool2d(kernel_size=2, stride=2)]
@@ -16,4 +18,4 @@ class Net(nn.Module):
 
         for layer in self.layers:
             x = layer(x)
-        return x.mean()
+        return x
